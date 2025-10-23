@@ -10,7 +10,7 @@
 
 このアプリケーションは、以下のGitHub Pagesで公開しており、すぐに試すことができます。
 
-**[デモページへアクセスする](https://roflsunriz.github.io/costcalculator/)**
+**[デモページへアクセスする](https://roflsunriz.github.io/CostCalculator/)**
 
 
 ## 🛠️ 使い方
