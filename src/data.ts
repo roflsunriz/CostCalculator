@@ -332,7 +332,7 @@ export function calculateElectricityCost(
   return Math.round(total);
 }
 
-import type { ElectricityCostBreakdownStage } from "./types/cost.ts";
+import type { ElectricityCostBreakdownStage } from "@/types/cost";
 
 export function calculateElectricityCostBreakdown(
   company: ElectricityCompany,
