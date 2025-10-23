@@ -12,7 +12,7 @@
 
 @layer base {
   html {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
       "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
       "Helvetica Neue", Arial, sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -36,98 +36,6 @@
   position: relative;
 }
 
-/* プロフェッショナルなグラスモーフィズム */
-.glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.37),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 80px rgba(99, 102, 241, 0.15);
-}
-
-.glass-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-    0 0 100px rgba(99, 102, 241, 0.25);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-}
-
-/* ニューモーフィズムボタン */
-.neu-button {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  box-shadow: 
-    8px 8px 16px rgba(0, 0, 0, 0.4),
-    -4px -4px 12px rgba(255, 255, 255, 0.05),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  transition: all 0.2s ease;
-}
-
-.neu-button:hover {
-  box-shadow: 
-    4px 4px 8px rgba(0, 0, 0, 0.4),
-    -2px -2px 6px rgba(255, 255, 255, 0.05),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-}
-
-.neu-button:active {
-  box-shadow: 
-    inset 4px 4px 8px rgba(0, 0, 0, 0.4),
-    inset -2px -2px 6px rgba(255, 255, 255, 0.05);
-}
-
-/* プレミアムグラデーションテキスト */
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* スムーズなアニメーション */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 3s ease-in-out infinite;
-}
-
-.shimmer {
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 60%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-/* カスタムスクロールバー */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -148,42 +56,18 @@
   background: linear-gradient(135deg, #764ba2, #f093fb);
 }
 
-/* プレミアムフォーカススタイル */
+/* Focus ring styling */
 :where(button, [role="button"], a, input, select, textarea):focus-visible {
   outline: 2px solid transparent;
   outline-offset: 2px;
-  box-shadow: 
+  box-shadow:
     0 0 0 2px rgba(99, 102, 241, 0.5),
     0 0 20px rgba(99, 102, 241, 0.3);
 }
 
-/* プレミアムトランジション */
+/* Default easing for transitions */
 * {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 高級感のあるホバー効果 */
-.premium-hover {
-  position: relative;
-  overflow: hidden;
-}
-
-.premium-hover::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.premium-hover:hover::before {
-  width: 300%;
-  height: 300%;
 }
 
 .title-bar {
