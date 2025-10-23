@@ -70,6 +70,12 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.setup-window {
+  position: absolute;
+  top: 15%;
+  left: 30%;
+}
+
 .title-bar {
   cursor: pointer;
   width: 64px;
@@ -86,6 +92,12 @@
 
 .title-text {
   color: #ffffff;
+}
+
+.garbage-can-container {
+  position: absolute;
+  top: 5px;
+  left: 10px;
 }
 
 .garbage-can {
@@ -119,8 +131,8 @@
 
 .my-computer-container {
   position: absolute;
-  top: 80px;
-  left: -15px;
+  top: 90px;
+  left: -10px;
 }
 
 .file-explorer {

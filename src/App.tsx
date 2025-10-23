@@ -632,12 +632,12 @@ function App() {
           <span className="text-xs">My Computer</span>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="h-12 w-12 border border-white bg-[#000080]/40 shadow-[2px_2px_0_0_rgba(0,0,0,0.5)]" />
+          <div className="h-12 w-12" />
           <img src={FileExplorer} alt="Explorer" className="h-12 w-12 file-explorer" />
           <span className="text-xs">Explorer</span>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="h-12 w-12 border border-white bg-[#000080]/40 shadow-[2px_2px_0_0_rgba(0,0,0,0.5)]" />
+          <div className="h-12 w-12" />
           <img src={CostCalculator} alt="Cost Wizard" className="h-12 w-12 cost-calculator" />
           <span className="text-xs">Cost Wizard</span>
         </div>
@@ -648,7 +648,7 @@ function App() {
         <span className="text-xs">Recycle Bin</span>
       </div>
 
-      <div className="relative z-20 mx-auto mt-24 w-[min(90%,720px)] border border-black bg-[#c0c0c0] shadow-[4px_4px_0_0_rgba(0,0,0,0.6)]">
+      <div className="relative z-20 mx-auto mt-24 w-[min(90%,720px)] border border-black bg-[#c0c0c0] shadow-[4px_4px_0_0_rgba(0,0,0,0.6)] setup-window">
         <div className="flex items-center justify-between bg-[#000080] px-3 py-2 text-white">
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 border border-white bg-[#c0c0c0]" />
