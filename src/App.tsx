@@ -56,20 +56,20 @@ const clampHours = (value: number) =>
 
 const describeHeater = (heater: HeaterOption) => {
   if (heater.type === "electric") {
-    return `Electric / Input ${formatNumber(heater.power)} kW / COP ${formatNumber(
+    return `電気式 / 消費電力 ${formatNumber(heater.power)} kW / COP ${formatNumber(
       heater.efficiency,
     )}`;
   }
 
   if (heater.type === "kerosene") {
-    return `Kerosene / Usage ${formatNumber(
+    return `灯油式 / 消費量 ${formatNumber(
       heater.consumption,
-    )} L/h / Efficiency ${Math.round(heater.efficiency * 100)}%`;
+    )} L/h / 効率 ${Math.round(heater.efficiency * 100)}%`;
   }
 
-  return `Gas / Usage ${formatNumber(
+  return `ガス式 / 消費量 ${formatNumber(
     heater.consumption,
-  )} m3/h / Efficiency ${Math.round(heater.efficiency * 100)}%`;
+  )} m³/h / 効率 ${Math.round(heater.efficiency * 100)}%`;
 };
 
 const formatHours = (hours: number) =>
@@ -245,7 +245,7 @@ function App() {
     <div className="space-y-4 text-sm">
       <div>
         <label className="mb-1 block font-semibold text-gray-800">
-          Select your region
+          地域を選択
         </label>
         <select
           value={selectedRegionId}
@@ -263,33 +263,33 @@ function App() {
       <div className="grid gap-3 md:grid-cols-3">
         <div className="rounded border border-white bg-[#dfdfdf] p-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
           <p className="text-xs font-bold uppercase tracking-wide text-gray-700">
-            Electricity
+            電力会社
           </p>
           <p className="mt-1 font-semibold text-gray-900">
             {electricityCompany.name}
           </p>
           <p className="mt-2 text-xs text-gray-700">
-            Base fee {formatYen(electricityCompany.baseFee)} / month
+            基本料金 {formatYen(electricityCompany.baseFee)} / 月
           </p>
         </div>
         <div className="rounded border border-white bg-[#dfdfdf] p-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
           <p className="text-xs font-bold uppercase tracking-wide text-gray-700">
-            Gas
+            ガス会社
           </p>
           <p className="mt-1 font-semibold text-gray-900">{gasCompany.name}</p>
           <p className="mt-2 text-xs text-gray-700">
-            Unit {formatNumber(gasCompany.rate)} JPY / m3
+            単価 {formatNumber(gasCompany.rate)} 円 / m³
           </p>
         </div>
         <div className="rounded border border-white bg-[#dfdfdf] p-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
           <p className="text-xs font-bold uppercase tracking-wide text-gray-700">
-            Kerosene
+            灯油
           </p>
           <p className="mt-1 font-semibold text-gray-900">
             {keroseneRegion.name}
           </p>
           <p className="mt-2 text-xs text-gray-700">
-            Unit {formatNumber(keroseneRegion.rate)} JPY / L
+            単価 {formatNumber(keroseneRegion.rate)} 円 / L
           </p>
         </div>
       </div>
@@ -300,7 +300,7 @@ function App() {
     <div className="space-y-4 text-sm">
       <div>
         <label className="mb-1 block font-semibold text-gray-800">
-          Room size
+          部屋の広さ
         </label>
         <select
           value={selectedRoomSize}
@@ -309,7 +309,7 @@ function App() {
         >
           {roomSizes.map((size) => (
             <option key={size} value={size}>
-              {size} jo
+              {size} 畳
             </option>
           ))}
         </select>
@@ -317,7 +317,7 @@ function App() {
 
       <div>
         <label className="mb-1 block font-semibold text-gray-800">
-          Air conditioner model
+          エアコン機種
         </label>
         <select
           value={selectedModelId}
@@ -326,20 +326,20 @@ function App() {
         >
           {acModels.map((model) => (
             <option key={model.id} value={model.id}>
-              Model {model.id} (capacity {formatNumber(model.coolingCapacity)} kW /
-              power {formatNumber(model.power)} kW)
+              {model.id} (冷房能力 {formatNumber(model.coolingCapacity)} kW /
+              消費電力 {formatNumber(model.power)} kW)
             </option>
           ))}
         </select>
         <p className="mt-1 text-xs text-gray-700">
-          Recommended models: {recommendedModels.length}
+          推奨機種: {recommendedModels.length} 件
         </p>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
         <label className="space-y-1">
           <span className="block font-semibold text-gray-800">
-            Cooling hours per day
+            1日あたりの冷房時間
           </span>
           <input
             type="number"
@@ -355,13 +355,13 @@ function App() {
         </label>
         <div className="rounded border border-white bg-[#dfdfdf] p-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
           <p className="text-xs font-bold uppercase tracking-wide text-gray-700">
-            Estimated monthly usage
+            月間消費電力（予測）
           </p>
           <p className="mt-2 text-lg font-semibold text-gray-900">
             {formatNumber(Math.round(monthlyCoolingKwh))} kWh
           </p>
           <p className="mt-1 text-xs text-gray-700">
-            {formatHours(coolingHoursPerDay)} h per day x 30 days
+            {formatHours(coolingHoursPerDay)} 時間/日 × 30 日
           </p>
         </div>
       </div>
@@ -374,7 +374,7 @@ function App() {
         <div className="space-y-4">
           <label className="space-y-1">
             <span className="block font-semibold text-gray-800">
-              Heating hours per day
+              1日あたりの暖房時間
             </span>
             <input
               type="number"
@@ -391,7 +391,7 @@ function App() {
 
           <div className="rounded border border-white bg-[#dfdfdf] p-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
             <p className="mb-2 font-semibold text-gray-800">
-              Select heaters to compare
+              比較する暖房器具を選択
             </p>
             <div className="max-h-48 space-y-2 overflow-auto pr-1">
               {heaters.map((heater) => {
@@ -420,7 +420,7 @@ function App() {
                       </p>
                       {result ? (
                         <p className="text-xs font-medium text-gray-800">
-                          {formatYen(result.cost)} / month
+                          {formatYen(result.cost)} / 月
                         </p>
                       ) : null}
                     </div>
@@ -429,7 +429,7 @@ function App() {
               })}
             </div>
             <p className="mt-2 text-xs text-gray-700">
-              At least one heater must remain selected.
+              ※ 最低1つの暖房器具を選択してください
             </p>
           </div>
         </div>
@@ -437,7 +437,7 @@ function App() {
         <div className="space-y-4">
           <div className="rounded border border-white bg-[#dfdfdf] p-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
             <p className="text-xs font-bold uppercase tracking-wide text-gray-700">
-              Heating cost comparison
+              暖房コスト比較
             </p>
             <div className="mt-2 space-y-2">
               {heatingResults.map(({ heater, cost }, index) => (
@@ -446,7 +446,7 @@ function App() {
                   className="flex items-center justify-between rounded border border-white bg-[#f8f8f8] px-2 py-1 shadow-[inset_-1px_-1px_0_0_rgba(0,0,0,0.4)]"
                 >
                   <span className="truncate text-gray-800">
-                    {index === 0 ? "* " : "- "}
+                    {index === 0 ? "★ " : "- "}
                     {heater.name}
                   </span>
                   <span className="font-semibold text-gray-900">
@@ -456,17 +456,17 @@ function App() {
               ))}
               {!heatingResults.length && (
                 <p className="text-xs text-gray-700">
-                  Select a heater to show comparison.
+                  暖房器具を選択してください
                 </p>
               )}
             </div>
           </div>
 
           <div className="rounded border border-white bg-[#dfdfdf] p-3 text-xs text-gray-700 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
-            <p className="font-semibold text-gray-800">Daily assumption</p>
+            <p className="font-semibold text-gray-800">計算条件</p>
             <p>
-              {formatHours(heatingHoursPerDay)} h per day x {DAYS_PER_MONTH} days =
-              {formatHours(heatingHoursPerDay * DAYS_PER_MONTH)} total hours.
+              {formatHours(heatingHoursPerDay)} 時間/日 × {DAYS_PER_MONTH} 日 =
+              合計 {formatHours(heatingHoursPerDay * DAYS_PER_MONTH)} 時間
             </p>
           </div>
         </div>
@@ -477,28 +477,28 @@ function App() {
   const renderSummaryStep = () => (
     <div className="space-y-4 text-sm">
       <div className="rounded border border-white bg-[#dfdfdf] p-4 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
-        <p className="mb-2 font-semibold text-gray-900">Cooling cost</p>
+        <p className="mb-2 font-semibold text-gray-900">冷房コスト</p>
         <p className="text-lg font-bold text-gray-900">
           {formatYen(coolingCost)}
         </p>
         <p className="text-xs text-gray-700">
-          Monthly usage {formatNumber(Math.round(monthlyCoolingKwh))} kWh ( {formatHours(
+          月間使用量 {formatNumber(Math.round(monthlyCoolingKwh))} kWh（{formatHours(
             coolingHoursPerDay,
-          )} h per day x 30 days )
+          )} 時間/日 × 30 日）
         </p>
         <div className="mt-3 border border-black bg-white">
           <table className="w-full text-left text-xs text-gray-800">
             <thead className="bg-[#000080] text-black">
               <tr>
-                <th className="px-2 py-1">Band</th>
-                <th className="px-2 py-1">Rate</th>
-                <th className="px-2 py-1">Usage</th>
-                <th className="px-2 py-1">Cost</th>
+                <th className="px-2 py-1">段階</th>
+                <th className="px-2 py-1">単価</th>
+                <th className="px-2 py-1">使用量</th>
+                <th className="px-2 py-1">料金</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="border-t border-black px-2 py-1">Base fee</td>
+                <td className="border-t border-black px-2 py-1">基本料金</td>
                 <td className="border-t border-black px-2 py-1">-</td>
                 <td className="border-t border-black px-2 py-1">-</td>
                 <td className="border-t border-black px-2 py-1">
@@ -508,10 +508,10 @@ function App() {
               {coolingBreakdown.stages.map((stage, index) => (
                 <tr key={index}>
                   <td className="border-t border-black px-2 py-1">
-                    Tier {index + 1}
+                    第 {index + 1} 段階
                   </td>
                   <td className="border-t border-black px-2 py-1">
-                    {formatNumber(stage.rate)} JPY/kWh
+                    {formatNumber(stage.rate)} 円/kWh
                   </td>
                   <td className="border-t border-black px-2 py-1">
                     {formatNumber(stage.usageKwh)} kWh
@@ -523,7 +523,7 @@ function App() {
               ))}
               <tr>
                 <td className="border-t border-black px-2 py-1 font-semibold">
-                  Total
+                  合計
                 </td>
                 <td className="border-t border-black px-2 py-1" />
                 <td className="border-t border-black px-2 py-1" />
@@ -537,7 +537,7 @@ function App() {
       </div>
 
       <div className="rounded border border-white bg-[#dfdfdf] p-4 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
-        <p className="mb-2 font-semibold text-gray-900">Heating comparison</p>
+        <p className="mb-2 font-semibold text-gray-900">暖房コスト比較</p>
         <div className="space-y-1">
           {heatingResults.map(({ heater, cost }, index) => (
             <div
@@ -545,7 +545,7 @@ function App() {
               className="flex items-center justify-between border border-white bg-[#efefef] px-3 py-2 shadow-[inset_-1px_-1px_0_0_rgba(0,0,0,0.5)]"
             >
               <span className="text-gray-800">
-                {index === 0 ? "*" : "-"} {heater.name}
+                {index === 0 ? "★" : "-"} {heater.name}
               </span>
               <span className="font-semibold text-gray-900">
                 {formatYen(cost)}
@@ -555,9 +555,9 @@ function App() {
         </div>
         {leadingHeating ? (
           <p className="mt-2 text-xs text-gray-700">
-            Lowest cost option: {leadingHeating.heater.name} at {formatYen(
+            最安オプション: {leadingHeating.heater.name}（{formatYen(
               leadingHeating.cost,
-            )} per month.
+            )} / 月）
           </p>
         ) : null}
       </div>
@@ -566,38 +566,38 @@ function App() {
   const stepConfigs: StepConfig[] = [
     {
       id: "region",
-      title: "Step 1: Region",
+      title: "ステップ1: 地域設定",
       description:
-        "Select the supply area so the wizard can load electricity, gas, and kerosene pricing tables.",
+        "お住まいの地域を選択してください。電力・ガス・灯油の料金表が自動で読み込まれます。",
       body: renderRegionStep(),
       canProceed: Boolean(selectedRegionId),
-      primaryLabel: "Next >",
+      primaryLabel: "次へ >",
     },
     {
       id: "cooling",
-      title: "Step 2: Cooling",
+      title: "ステップ2: 冷房設定",
       description:
-        "Confirm the room size, pick an air conditioner model, and set the expected cooling hours per day.",
+        "部屋の広さとエアコン機種を選び、1日あたりの冷房使用時間を設定してください。",
       body: renderCoolingStep(),
       canProceed: Boolean(selectedModelId),
-      primaryLabel: "Next >",
+      primaryLabel: "次へ >",
     },
     {
       id: "heating",
-      title: "Step 3: Heating",
+      title: "ステップ3: 暖房設定",
       description:
-        "Choose the heaters you plan to use and adjust daily operating hours to compare running costs.",
+        "比較したい暖房器具を選び、1日あたりの使用時間を設定してランニングコストを比較します。",
       body: renderHeatingStep(),
       canProceed: selectedHeaterIds.length > 0,
-      primaryLabel: "Next >",
+      primaryLabel: "次へ >",
     },
     {
       id: "summary",
-      title: "Step 4: Summary",
-      description: "Review the calculated monthly costs before finishing the setup.",
+      title: "ステップ4: 結果確認",
+      description: "算出された月額コストをご確認ください。",
       body: renderSummaryStep(),
       canProceed: true,
-      primaryLabel: "Finish",
+      primaryLabel: "完了",
     },
   ];
 
@@ -628,31 +628,31 @@ function App() {
 
       <div className="absolute left-6 top-6 z-10 flex flex-col gap-8 text-white my-computer-container">
         <div className="flex flex-col items-center gap-2">
-          <img src={MyComputer} alt="My Computer" className="h-12 w-12 my-computer" />
-          <span className="text-xs">My Computer</span>
+          <img src={MyComputer} alt="マイ コンピュータ" className="h-12 w-12 my-computer" />
+          <span className="text-xs">マイ コンピュータ</span>
         </div>
         <div className="flex flex-col items-center gap-2">
           <div className="h-12 w-12" />
-          <img src={FileExplorer} alt="Explorer" className="h-12 w-12 file-explorer" />
-          <span className="text-xs">Explorer</span>
+          <img src={FileExplorer} alt="エクスプローラ" className="h-12 w-12 file-explorer" />
+          <span className="text-xs">エクスプローラ</span>
         </div>
         <div className="flex flex-col items-center gap-2">
           <div className="h-12 w-12" />
-          <img src={CostCalculator} alt="Cost Wizard" className="h-12 w-12 cost-calculator" />
-          <span className="text-xs">Cost Wizard</span>
+          <img src={CostCalculator} alt="コスト電卓" className="h-12 w-12 cost-calculator" />
+          <span className="text-xs">コスト電卓</span>
         </div>
       </div>
 
       <div className="absolute right-8 top-8 z-10 flex flex-col items-center gap-2 text-white garbage-can-container">
-        <img src={GarbageCan} alt="Recycle Bin" className="h-12 w-12 garbage-can" />
-        <span className="text-xs">Recycle Bin</span>
+        <img src={GarbageCan} alt="ごみ箱" className="h-12 w-12 garbage-can" />
+        <span className="text-xs">ごみ箱</span>
       </div>
 
       <div className="relative z-20 mx-auto mt-24 w-[min(90%,720px)] border border-black bg-[#c0c0c0] shadow-[4px_4px_0_0_rgba(0,0,0,0.6)] setup-window">
         <div className="flex items-center justify-between bg-[#000080] px-3 py-2 text-white">
           <div className="flex items-center gap-2">
             <div className="h-4 w-4 border border-white bg-[#c0c0c0]" />
-            <span className="text-sm font-semibold title-text">Cost Calculator Setup</span>
+            <span className="text-sm font-semibold title-text">コスト電卓 セットアップ</span>
           </div>
           <div className="flex items-center gap-1">
             <img src={TitleBar} alt="Minimize/Maximize/Close" className="h-5 w-8 cursor-pointer title-bar" />
@@ -674,7 +674,7 @@ function App() {
 
           <div className="mt-6 flex items-center justify-between border border-white bg-[#dfdfdf] px-4 py-3 shadow-[1px_1px_0_0_rgba(255,255,255,0.7)_inset,-1px_-1px_0_0_rgba(0,0,0,0.4)_inset]">
             <div className="text-xs text-gray-700">
-              Need support? support@example.com
+              お問い合わせ: support@example.com
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -682,7 +682,7 @@ function App() {
                 onClick={handleCancel}
                 className="border border-black bg-[#dfdfdf] px-4 py-1 text-sm shadow-[inset_-1px_-1px_0_0_rgba(0,0,0,0.5)] hover:bg-white button-text"
               >
-                Cancel
+                キャンセル
               </button>
               <button
                 type="button"
@@ -694,7 +694,7 @@ function App() {
                     : "bg-[#dfdfdf] hover:bg-white"
                 }`}
               >
-                {"< Back"}
+                {"< 戻る"}
               </button>
               <button
                 type="button"
@@ -720,7 +720,7 @@ function App() {
             <img src={Start} alt="Start" className="w-full h-full object-contain start-button" />
           </button>
           <div className="border border-black bg-[#efefef] px-3 py-1 text-xs shadow-[inset_-1px_-1px_0_0_rgba(0,0,0,0.5)]">
-            Cost Wizard Setup
+            コスト電卓 セットアップ
           </div>
         </div>
         {/* Spacer: take all available middle space */}
