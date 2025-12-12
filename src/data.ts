@@ -165,58 +165,51 @@ export const roomSizes = [6, 8, 10, 12, 14, 16, 18, 20];
 
 /**
  * ダイキン Eシリーズ 2025年モデル
- * 型番: S225ATES〜S635ATES（2025年モデル）
- * データソース: https://kakaku.com/item/K0001676976/ 等
+ * 型番: AN225AES-W〜AN565AEP（2025年モデル）
+ * データソース: https://www.ac.daikin.co.jp/roomaircon/products/e_series/spec 等
  */
 export const acModels: AirConditionerModel[] = [
   {
-    // S225ATES-W 主に6畳用 定格冷房消費電力580W
-    id: "S225ATES",
+    // AN225AES-W 主に6畳用 定格冷房消費電力580W
+    id: "AN225AES-W",
     coolingCapacity: 2.2,
     power: 0.58,
-    applicableRoomSizes: [6, 8],
+    applicableRoomSizes: [6, 9],
   },
   {
-    // S255ATES-W 主に8畳用 定格冷房消費電力720W
-    id: "S255ATES",
+    // AN255AES-W 主に8畳用 定格冷房消費電力720W
+    id: "AN255AES-W",
     coolingCapacity: 2.5,
     power: 0.72,
-    applicableRoomSizes: [8, 10],
+    applicableRoomSizes: [7, 10],
   },
   {
-    // S285ATES-W 主に10畳用 定格冷房消費電力780W
-    id: "S285ATES",
+    // AN285AES-W 主に10畳用 定格冷房消費電力780W
+    id: "AN285AES-W",
     coolingCapacity: 2.8,
     power: 0.78,
-    applicableRoomSizes: [10, 12],
+    applicableRoomSizes: [8, 12],
   },
   {
-    // S365ATES-W/EV 主に12畳用 定格冷房消費電力1,180W
-    id: "S365ATES",
+    // AN365AES-W 主に12畳用 定格冷房消費電力1,180W
+    id: "AN365AES-W",
     coolingCapacity: 3.6,
     power: 1.18,
-    applicableRoomSizes: [10, 12, 14],
+    applicableRoomSizes: [10, 15],
   },
   {
-    // S405ATEP-W/EV 主に14畳用 定格冷房消費電力1,370W
-    id: "S405ATEP",
+    // AN405AEP-W 主に14畳用 定格冷房消費電力1,370W
+    id: "AN405AEP-W",
     coolingCapacity: 4.0,
     power: 1.37,
-    applicableRoomSizes: [12, 14],
+    applicableRoomSizes: [11, 17],
   },
   {
-    // S565ATES 主に18畳用（参考値・旧データ維持）
-    id: "S565ATES",
+    // AN565AEP-W 主に18畳用 定格冷房消費電力2,070W
+    id: "AN565AEP-W",
     coolingCapacity: 5.6,
-    power: 1.77,
-    applicableRoomSizes: [18, 20],
-  },
-  {
-    // S635ATES 主に20畳用（参考値・旧データ維持）
-    id: "S635ATES",
-    coolingCapacity: 6.3,
-    power: 2.0,
-    applicableRoomSizes: [20],
+    power: 2.07,
+    applicableRoomSizes: [15, 23],
   },
 ];
 
