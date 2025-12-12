@@ -15,15 +15,15 @@
  * - 実際の請求額は燃料費調整額・再エネ賦課金により変動します
  * - 最新の料金は各社公式サイトでご確認ください
  */
-export const NATIONAL_AVERAGE_COST_2025_11 = {
+export const NATIONAL_AVERAGE_COST_2025_12 = {
   electricity_per_kWh: 30.54,
-  cityGas_per_m3: 197.28,
-  cityGas_per_kWh: 15.66,
-  kerosene_per_L: 127.03,
-  kerosene_per_kWh: 12.53,
+  cityGas_per_m3: 170.88,
+  cityGas_per_kWh: 13.57,
+  kerosene_per_L: 123.0,
+  kerosene_per_kWh: 12.13,
 } as const;
 
-export const CITY_GAS_UNIT_PRICE_LIVE_2025_11 = 197.28 as const;
+export const CITY_GAS_UNIT_PRICE_LIVE_2025_12 = 170.88 as const;
 
 export type TieredRate = {
   limit: number;
@@ -59,10 +59,15 @@ export const electricityCompanies: ElectricityCompany[] = [
     ],
   },
   {
+    // 2025年12月分料金 従量電灯A（3段階制）
     id: "kansai",
     name: "関西電力",
-    baseFee: 0,
-    rates: [{ limit: Infinity, rate: 22.48 }],
+    baseFee: 522.58,
+    rates: [
+      { limit: 120, rate: 17.81 },
+      { limit: 300, rate: 21.02 },
+      { limit: Infinity, rate: 23.52 },
+    ],
   },
   {
     id: "chubu",
@@ -85,10 +90,10 @@ export const electricityCompanies: ElectricityCompany[] = [
     ],
   },
   {
-    // 2025年11月分料金 https://www.hepco.co.jp/home/price/ratemenu/pdf/meterratelight_chart2511.pdf
+    // 2025年12月分料金 https://www.hepco.co.jp/home/price/ratemenu/pdf/meterratelight_chart2512.pdf
     id: "hokkaido",
     name: "北海道電力",
-    baseFee: 2090,
+    baseFee: 1254,
     rates: [
       { limit: 120, rate: 35.69 },
       { limit: 280, rate: 41.98 },
@@ -96,33 +101,36 @@ export const electricityCompanies: ElectricityCompany[] = [
     ],
   },
   {
+    // 2025年12月分料金
     id: "chugoku",
     name: "中国電力",
     baseFee: 990,
     rates: [
-      { limit: 120, rate: 19.66 },
-      { limit: 300, rate: 25.15 },
-      { limit: Infinity, rate: 28.52 },
+      { limit: 120, rate: 32.75 },
+      { limit: 300, rate: 39.43 },
+      { limit: Infinity, rate: 41.55 },
     ],
   },
   {
+    // 2025年12月分料金
     id: "shikoku",
     name: "四国電力",
     baseFee: 990,
     rates: [
-      { limit: 120, rate: 20.32 },
-      { limit: 300, rate: 25.8 },
-      { limit: Infinity, rate: 29.29 },
+      { limit: 120, rate: 27.26 },
+      { limit: 300, rate: 32.79 },
+      { limit: Infinity, rate: 35.71 },
     ],
   },
   {
+    // 2025年12月分料金
     id: "hokuriku",
     name: "北陸電力",
     baseFee: 990,
     rates: [
-      { limit: 120, rate: 17.46 },
-      { limit: 300, rate: 22.94 },
-      { limit: Infinity, rate: 26.31 },
+      { limit: 120, rate: 30.82 },
+      { limit: 300, rate: 34.71 },
+      { limit: Infinity, rate: 36.42 },
     ],
   },
 ];
@@ -158,45 +166,53 @@ export const roomSizes = [6, 8, 10, 12, 14, 16, 18, 20];
 /**
  * ダイキン Eシリーズ 2025年モデル
  * 型番: S225ATES〜S635ATES（2025年モデル）
+ * データソース: https://kakaku.com/item/K0001676976/ 等
  */
 export const acModels: AirConditionerModel[] = [
   {
+    // S225ATES-W 主に6畳用 定格冷房消費電力580W
     id: "S225ATES",
     coolingCapacity: 2.2,
-    power: 0.47,
-    applicableRoomSizes: [6, 8, 10],
+    power: 0.58,
+    applicableRoomSizes: [6, 8],
   },
   {
+    // S255ATES-W 主に8畳用 定格冷房消費電力720W
     id: "S255ATES",
     coolingCapacity: 2.5,
-    power: 0.56,
-    applicableRoomSizes: [8, 10, 12],
+    power: 0.72,
+    applicableRoomSizes: [8, 10],
   },
   {
+    // S285ATES-W 主に10畳用 定格冷房消費電力780W
     id: "S285ATES",
     coolingCapacity: 2.8,
-    power: 0.66,
+    power: 0.78,
+    applicableRoomSizes: [10, 12],
+  },
+  {
+    // S365ATES-W/EV 主に12畳用 定格冷房消費電力1,180W
+    id: "S365ATES",
+    coolingCapacity: 3.6,
+    power: 1.18,
     applicableRoomSizes: [10, 12, 14],
   },
   {
-    id: "S365ATES",
-    coolingCapacity: 3.6,
-    power: 0.97,
-    applicableRoomSizes: [12, 14, 16],
-  },
-  {
-    id: "S405ATES",
+    // S405ATEP-W/EV 主に14畳用 定格冷房消費電力1,370W
+    id: "S405ATEP",
     coolingCapacity: 4.0,
-    power: 1.27,
-    applicableRoomSizes: [14, 16, 18],
+    power: 1.37,
+    applicableRoomSizes: [12, 14],
   },
   {
+    // S565ATES 主に18畳用（参考値・旧データ維持）
     id: "S565ATES",
     coolingCapacity: 5.6,
     power: 1.77,
     applicableRoomSizes: [18, 20],
   },
   {
+    // S635ATES 主に20畳用（参考値・旧データ維持）
     id: "S635ATES",
     coolingCapacity: 6.3,
     power: 2.0,
@@ -212,14 +228,22 @@ export type GasCompany = {
 };
 
 export const gasCompanies: GasCompany[] = [
-  { id: "tokyo-gas", name: "東京ガス", baseFee: 759, rate: 145.31 },
-  { id: "osaka-gas", name: "大阪ガス", baseFee: 759, rate: 145.31 },
-  { id: "toho-gas", name: "東邦ガス", baseFee: 759, rate: 145.31 },
-  { id: "seibu-gas", name: "西部ガス", baseFee: 759, rate: 145.31 },
-  { id: "hokkaido-gas", name: "北海道ガス", baseFee: 759, rate: 145.31 },
-  { id: "shizuoka-gas", name: "静岡ガス", baseFee: 759, rate: 145.31 },
-  { id: "tosai-gas", name: "東彩ガス", baseFee: 759, rate: 145.31 },
-  { id: "keiyo-gas", name: "京葉ガス", baseFee: 759, rate: 145.31 },
+  // 2025年12月分料金 20〜80m³/月の料金表B適用
+  { id: "tokyo-gas", name: "東京ガス", baseFee: 1056, rate: 130.5 },
+  // 2025年12月分料金 20〜50m³/月の料金表B適用
+  { id: "osaka-gas", name: "大阪ガス", baseFee: 1056, rate: 144 },
+  // 2025年12月分料金 20〜50m³/月の料金表B適用
+  { id: "toho-gas", name: "東邦ガス", baseFee: 1056, rate: 169 },
+  // 2025年12月分料金 15〜30m³/月の料金表（福岡地区）適用
+  { id: "seibu-gas", name: "西部ガス", baseFee: 1056, rate: 232 },
+  // 2025年12月分料金 15〜50m³/月の料金表B適用
+  { id: "hokkaido-gas", name: "北海道ガス", baseFee: 1056, rate: 183 },
+  // 2025年12月分料金 25〜60m³/月の料金表C適用
+  { id: "shizuoka-gas", name: "静岡ガス", baseFee: 1056, rate: 208 },
+  // 2025年12月分料金 15〜80m³/月の料金表B適用（参考値）
+  { id: "tosai-gas", name: "東彩ガス", baseFee: 1056, rate: 149 },
+  // 2025年12月分料金 20〜100m³/月の料金表B適用
+  { id: "keiyo-gas", name: "京葉ガス", baseFee: 1056, rate: 152 },
 ];
 
 export type KeroseneRegion = {
@@ -228,15 +252,16 @@ export type KeroseneRegion = {
   rate: number;
 };
 
+// 2025年12月分料金 総務省「石油製品価格調査」地域別中央値
 export const keroseneRegions: KeroseneRegion[] = [
-  { id: "hokkaido", name: "北海道", rate: 130.0346 },
-  { id: "tohoku", name: "東北", rate: 124.5026 },
-  { id: "kanto", name: "関東", rate: 127.6111 },
-  { id: "chubu", name: "中部", rate: 126.1507 },
-  { id: "kansai", name: "関西", rate: 124.8405 },
-  { id: "chugoku", name: "中国", rate: 129.6205 },
-  { id: "shikoku", name: "四国", rate: 128.1457 },
-  { id: "kyushu", name: "九州", rate: 125.3343 },
+  { id: "hokkaido", name: "北海道", rate: 126 },
+  { id: "tohoku", name: "東北", rate: 120 },
+  { id: "kanto", name: "関東", rate: 122 },
+  { id: "chubu", name: "中部", rate: 122 },
+  { id: "kansai", name: "関西", rate: 122 },
+  { id: "chugoku", name: "中国", rate: 123 },
+  { id: "shikoku", name: "四国", rate: 124 },
+  { id: "kyushu", name: "九州", rate: 125 },
 ];
 
 export type Heater =
