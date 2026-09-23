@@ -16,3 +16,7 @@ Get-Content -Raw -LiteralPath .\COMMON-AGENTS.md
 ## パッケージ管理
 
 - パッケージマネージャは Bun を使用する。
+
+## 依存監査で確定した事項（2026-09-23）
+
+- `bun audit fix` だけでは brace-expansion の脆弱版が上流の厳密な依存範囲で残る。`package.json` の既存 `overrides` と `bun.lock` を同時に更新し、`bun audit` と関連テスト・ビルドで確認する。上流が安全版を取り込んだ場合は override の必要性を再評価する。
