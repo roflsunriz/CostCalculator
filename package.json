@@ -16,14 +16,14 @@
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "react": "^19.3.0",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.13.3",
     "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.2.3",
+    "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^5.2.0",
     "autoprefixer": "^10.5.4",
     "babel-plugin-react-compiler": "^19.1.0-rc.1-rc-af1b7da-20250421",
