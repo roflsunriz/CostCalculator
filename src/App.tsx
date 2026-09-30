@@ -86,7 +86,7 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedRegionId, setSelectedRegionId] = useState(defaultRegionId);
   const [selectedRoomSize, setSelectedRoomSize] = useState(defaultRoomSize);
-  const [selectedModelId, setSelectedModelId] = useState(defaultModelId);
+  const [selectedModelChoiceId, setSelectedModelId] = useState(defaultModelId);
   const [coolingHoursPerDay, setCoolingHoursPerDay] = useState(8);
   const [heatingHoursPerDay, setHeatingHoursPerDay] = useState(16);
   const [selectedHeaterIds, setSelectedHeaterIds] =
@@ -94,11 +94,7 @@ function App() {
   const [taskbarTime, setTaskbarTime] = useState(() => formatClock(new Date()));
 
   const selectedRegion =
-    useMemo(
-      () =>
-        regions.find((region) => region.id === selectedRegionId) ?? regions[0],
-      [selectedRegionId],
-    ) ?? regions[0];
+    regions.find((region) => region.id === selectedRegionId) ?? regions[0];
 
   const electricityCompany = useMemo(
     () => findElectricityCompany(selectedRegion.electricityCompanyId),
@@ -120,22 +116,14 @@ function App() {
     [selectedRoomSize],
   );
 
-  useEffect(() => {
-    if (!recommendedModels.length) {
-      return;
-    }
-
-    if (!recommendedModels.some((model) => model.id === selectedModelId)) {
-      setSelectedModelId(recommendedModels[0].id);
-    }
-  }, [recommendedModels, selectedModelId]);
+  const selectedModelId =
+    recommendedModels.find((model) => model.id === selectedModelChoiceId)?.id ??
+    recommendedModels[0]?.id ??
+    acModels[0]?.id ??
+    "";
 
   const selectedModel =
-    useMemo(
-      () =>
-        acModels.find((model) => model.id === selectedModelId) ?? acModels[0],
-      [selectedModelId],
-    ) ?? acModels[0];
+    acModels.find((model) => model.id === selectedModelId) ?? acModels[0];
 
   const monthlyCoolingKwh = useMemo(
     () => selectedModel.power * coolingHoursPerDay * DAYS_PER_MONTH,
