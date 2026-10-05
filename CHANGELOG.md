@@ -8,6 +8,9 @@
 
 ### Changed
 
+
+- 不具合・機能提案などの受付とPRの記入形式を揃え、プロジェクト固有の確認項目を残した。 READMEは既存の意味と手順を保ち、実装と異なる説明や読みにくい表現を修正した。
+
 - GitHub Pagesの実行環境を新世代へ追従できるよう、actions/checkout・configure-pages・upload-pages-artifact・deploy-pagesのメジャー更新を取り込んだ。
 - ビルド基盤をVite 8へ上げられるよう、vite 7.3.6から8.3.0へ更新した。
 - React Compilerの変換処理を維持したままplugin-react 6へ移行できるよう、`@vitejs/plugin-react` を6.1.1へ更新し、`vite.config.ts` を `react()` と `@rolldown/plugin-babel` の `reactCompilerPreset()` 構成へ移行した（`@rolldown/plugin-babel` を追加）。
