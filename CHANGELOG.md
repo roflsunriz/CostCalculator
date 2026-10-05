@@ -6,6 +6,14 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Viteの将来のnative config loaderでもパス解決を維持するため、ES modules非対応の__dirnameをimport.meta.dirnameへ置換した。
+
+### Security
+
+- brace-expansion の既知DoSを解消するため、既存 override を5.0.12へ更新し、Bunのlockを再生成した。
+
 ### Changed
 
 
