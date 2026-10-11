@@ -1,5 +1,9 @@
 # 検証手順
 
+## 依存監査（2026-10-11）
+
+Dependabot PR #19〜#23 の `verify` は、共通の `bun audit` で `source-map-js` 1.2.1 を検出して失敗した。main で先に修正済みの `brace-expansion` 5.0.12 は維持した。`package.json` の override と `bun.lock` を `source-map-js` 1.2.2 へ更新し、`bun install --frozen-lockfile` と `bun audit`（既知脆弱性 0 件）を確認した。PR は main 更新後に rebase し、それぞれの `verify` が成功してから順に取り込む。
+
 ## Dependabot 自動処理（2026-09-23）
 
 `.github/workflows/dependabot-automation.yml` を actionlint で検査し、PR 用 workflow 名（CI）と一致することを確認する。Dependabot の patch／minor かつ全 PR チェック成功の場合だけ取り込み、major・古い SHA・再失敗は残す。

@@ -33,3 +33,4 @@ Get-Content -Raw -LiteralPath .\COMMON-AGENTS.md
 ## CI監査修復の注意
 
 - 2026-10-05: brace-expansion 5.0.9では新規DoSアドバイザリが残るため、既存overrideとlockを5.0.12へ更新した。版を上げた後はCIと同じBunで固定lock、全依存監査、lint・型・ビルドを確認する。
+- 2026-10-11 の Dependabot PR #19〜#23 は共通の `source-map-js` 1.2.1 脆弱性により `verify` の `bun audit` で失敗した。`source-map-js` 1.2.2 へ override と lockfile を更新し、CI の Bun 1.3.8 でも監査を再確認する（詳細は `verification.md`）。
