@@ -2,11 +2,13 @@
 
 ## 依存監査（2026-10-11）
 
-Dependabot PR #19〜#23 の `verify` は、共通の `bun audit` で `source-map-js` 1.2.1 を検出して失敗した。main で先に修正済みの `brace-expansion` 5.0.12 は維持した。`package.json` の override と `bun.lock` を `source-map-js` 1.2.2 へ更新し、`bun install --frozen-lockfile` と `bun audit`（既知脆弱性 0 件）を確認した。PR は main 更新後に rebase し、それぞれの `verify` が成功してから順に取り込む。
+Dependabot PR #19〜#23 の `verify` は、共通の `bun audit` で `source-map-js` 1.2.1 を検出して失敗した。main で先に修正済みの `brace-expansion` 5.0.12 は維持した。`package.json` の override と `bun.lock` を `source-map-js` 1.2.2 へ更新し、`bun install --frozen-lockfile` と `bun audit`（既知脆弱性 0 件）を確認した。
+
+main の修正コミット `d9c00a8` で CI の `verify` が成功した後、PR #19、#20、#22、#23、#21 の順に main へマージされた。各 PR は Dependabot の rebase 後に `verify` 成功を確認した。最後に open PR 0件、Dependabot リモートブランチ0件を確認した。残る開発依存の更新では ESLint 10.12.0 と各 patch 版を適用した。postcss 更新後は `source-map-js` の override を削除し、lockfile 内の 1.2.2 と監査0件を確認した。Bun 1.4.0 で固定インストール、lint、型チェック、ビルドも成功した。TypeScript 7.0.2 は `typescript-eslint` 8.71.1 の peer 範囲外であり、6.0.3 を維持した。本リポジトリには `test` スクリプトが定義されていない。
 
 ## Dependabot 自動処理（2026-09-23）
 
-`.github/workflows/dependabot-automation.yml` を actionlint で検査し、PR 用 workflow 名（CI）と一致することを確認する。Dependabot の patch／minor かつ全 PR チェック成功の場合だけ取り込み、major・古い SHA・再失敗は残す。
+`.github/workflows/dependabot-automation.yml` を actionlint で検査し、PR 用 workflow 名（CI）と一致することを確認する。現在は Dependabot PR の全チェック成功後に更新種別を問わず取り込む。古い SHA や再失敗の PR は原因を調べて修正する。
 
 ## Dependabot Open PRの一括処理（2026-09-23）
 

@@ -33,4 +33,5 @@ Get-Content -Raw -LiteralPath .\COMMON-AGENTS.md
 ## CI監査修復の注意
 
 - 2026-10-05: brace-expansion 5.0.9では新規DoSアドバイザリが残るため、既存overrideとlockを5.0.12へ更新した。版を上げた後はCIと同じBunで固定lock、全依存監査、lint・型・ビルドを確認する。
-- 2026-10-11 の Dependabot PR #19〜#23 は共通の `source-map-js` 1.2.1 脆弱性により `verify` の `bun audit` で失敗した。`source-map-js` 1.2.2 へ override と lockfile を更新し、CI の Bun 1.3.8 でも監査を再確認する（詳細は `verification.md`）。
+- 2026-10-11 の Dependabot PR #19〜#23 は共通の `source-map-js` 1.2.1 脆弱性により `verify` の `bun audit` で失敗した。当初は override と lockfile を 1.2.2 へ更新して CI を通した。その後 postcss 8.5.29 の更新で override を外しても lockfile が 1.2.2 を維持し、監査0件を確認した（詳細は `verification.md`）。
+- 2026-10-11 時点で `typescript-eslint` 8.71.0、`eslint-plugin-react-hooks` 7.1.1、`eslint-plugin-react-refresh` 0.5.7 の peer 範囲は ESLint 10 を許容した。ESLint 10.12.0 に上げた後も lint・型・ビルド・監査を実行する。TypeScript 7 は `typescript-eslint` の peer 範囲外（`typescript <6.1.0`）なので 6.0.3 を維持する。
