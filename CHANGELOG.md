@@ -8,6 +8,10 @@
 
 ### Changed
 
+- 作業規範と実装上の知見を分けて参照できるよう、固有の構成・環境・調査知見を `findings.md` に集約し、元文書の参照と着手前の全文読了指示を整えた。利用者向け手順と既存の検証証跡は保持した。
+
+### Changed
+
 - 開発用の依存関係を安全に保つため、Dependabot PR #19〜#23 の `typescript-eslint`、`autoprefixer`、React Refresh、React Compiler、Vite 更新を CI 成功後に main へ取り込んだ。
 - 依存関係の互換範囲と監査結果を確認し、ESLint 10 と残る開発用パッケージの更新版を取り込んだ。TypeScript 7 は `typescript-eslint` の対応範囲外のため 6.0.3 を維持した。
 - 不具合・機能提案などの受付とPRの記入形式を揃え、プロジェクト固有の確認項目を残した。 READMEは既存の意味と手順を保ち、実装と異なる説明や読みにくい表現を修正した。

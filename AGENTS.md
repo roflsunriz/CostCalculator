@@ -13,25 +13,8 @@ Get-Content -Raw -LiteralPath .\COMMON-AGENTS.md
 4. 全文を読了するまで、ローカル `AGENTS.md` だけを根拠に作業を続けてはならない。読了後は `COMMON-AGENTS.md` を最優先の指針とし、読了直後の最初の進捗報告で全文を読了したことを明示する。
    このファイルでは `cost-calculator` 固有の補足だけを記載する。
 
-## パッケージ管理
+## プロジェクト固有の実現手段と知見
 
-- パッケージマネージャは Bun を使用する。
-
-## Dependabot運用の実測知見（2026-09-23）
-
-- 同一ファイル（例: `.github/workflows/deploy.yml`）を触るDependabot PRは連続マージで競合する。1件ずつ `gh pr merge --squash` し、残りに `@dependabot rebase` をコメントして再評価後に次をマージする。
-- Dependabotブランチへ手動pushすると `dependabot/fetch-metadata` のclassifyが「not created by Dependabot」で失敗する。品質ゲートは `verify`（CI）の成功で判断し、マージ可否は `gh pr view --json mergeable,mergeStateStatus,statusCheckRollup` で確認する。
-- `@vitejs/plugin-react` 6はBabel同梱を廃止し `babel` オプションが型エラーになる。`vite.config.ts` は `react()`＋`@rolldown/plugin-babel` の `reactCompilerPreset()` へ移行する（要 `@rolldown/plugin-babel` 追加）。v6はVite 8必須のためVite 8更新と同時期に扱う。
-- TypeScript 7は `typescript-eslint`（peer `typescript <6.1.0`）未対応でlintが失敗する（TS 7.0は安定APIなし、対応は7.1以降待ち）。壊れない最大限としてTypeScript 6.0.3＋`typescript-eslint` 最新へ更新した。
-- TypeScript 6で `tsconfig` の `baseUrl` は非推奨エラーになる。`baseUrl` を削除し `paths` の値を `./` 始まり（例: `@/*: ["./src/*"]`）に直す。
-- `bun run format`（`prettier --write .`）は本リポジトリで無関係ファイルまで再整形する。実行後は `git diff --name-only` で対象外の churn がないか確認し、不要分は `git checkout -- .` 等で戻して最小差分を保つ。
-
-## 依存監査で確定した事項（2026-09-23）
-
-- `bun audit fix` だけでは brace-expansion の脆弱版が上流の厳密な依存範囲で残る。`package.json` の既存 `overrides` と `bun.lock` を同時に更新し、`bun audit` と関連テスト・ビルドで確認する。上流が安全版を取り込んだ場合は override の必要性を再評価する。
-
-## CI監査修復の注意
-
-- 2026-10-05: brace-expansion 5.0.9では新規DoSアドバイザリが残るため、既存overrideとlockを5.0.12へ更新した。版を上げた後はCIと同じBunで固定lock、全依存監査、lint・型・ビルドを確認する。
-- 2026-10-11 の Dependabot PR #19〜#23 は共通の `source-map-js` 1.2.1 脆弱性により `verify` の `bun audit` で失敗した。当初は override と lockfile を 1.2.2 へ更新して CI を通した。その後 postcss 8.5.29 の更新で override を外しても lockfile が 1.2.2 を維持し、監査0件を確認した（詳細は `verification.md`）。
-- 2026-10-11 時点で `typescript-eslint` 8.71.0、`eslint-plugin-react-hooks` 7.1.1、`eslint-plugin-react-refresh` 0.5.7 の peer 範囲は ESLint 10 を許容した。ESLint 10.12.0 に上げた後も lint・型・ビルド・監査を実行する。TypeScript 7 は `typescript-eslint` の peer 範囲外（`typescript <6.1.0`）なので 6.0.3 を維持する。
+- 作業開始前に [COMMON-AGENTS.md](COMMON-AGENTS.md) と [findings.md](findings.md) を先頭から末尾まで全文読む。
+- ファイル配置、使用ツール、実行コマンド、対応環境、文書構成、共通方針の例外と調査知見は `findings.md` に記録する。
+- ユーザーの指示、変更禁止、秘密情報の保護、検証・変更履歴を残す義務は共通指針に従い維持する。

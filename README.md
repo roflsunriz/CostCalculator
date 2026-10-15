@@ -20,4 +20,8 @@ Webブラウザでデモページを開き、設定項目を入力して「計�
 
 ## 依存更新の自動処理
 
-Dependabot は対象の依存関係を毎週確認します。更新 PR は CI のチェックが成功すると自動で squash merge されます。CI の失敗ジョブは 1 回だけ再実行し、再失敗時は指定した lockfile の再生成を試みます。互換性の問題で CI が通らない更新は手動で修正・検証します。マージ後はデプロイ workflow を起動します。
+この内容は [findings.md](findings.md#readme-1) にまとめています。
+
+## 開発時の参照先
+
+プロジェクト固有の構成・環境・調査知見は [findings.md](findings.md)、作業規範は [AGENTS.md](AGENTS.md)、検証記録は [verification.md](verification.md) を参照してください。
