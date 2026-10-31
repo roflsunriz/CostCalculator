@@ -33,5 +33,6 @@
 
 ### Security
 
+- 依存監査で検出されたZodとminimatchの脆弱性を解消するため、推移依存を修正版へ更新した。
 - brace-expansion の既知DoSを解消するため、既存 override を5.0.12へ更新し、Bunのlockを再生成した。
 - Dependabot PR の CI を止めていた依存監査を通すため、`source-map-js` を安全版に固定し、ロックファイルを更新した。

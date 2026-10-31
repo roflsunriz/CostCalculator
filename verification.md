@@ -1,5 +1,10 @@
 # 検証手順
 
+## 依存監査（2026-10-31）
+
+- Zodとminimatchを修正版に更新し、CIと同じBun 1.3.8で固定インストール、監査0件、lint、型検査、本番buildが成功した。このリポジトリに自動テスト用スクリプトはない。
+- 分離したローカルpreviewをアプリ内ブラウザーで開き、地域・冷房・暖房設定から月額計算結果まで表示できることを確認した。公開後の画面は別途確認する。
+
 ## 依存監査（2026-10-11）
 
 Dependabot PR #19〜#23 の `verify` は、共通の `bun audit` で `source-map-js` 1.2.1 を検出して失敗した。main で先に修正済みの `brace-expansion` 5.0.12 は維持した。`package.json` の override と `bun.lock` を `source-map-js` 1.2.2 へ更新し、`bun install --frozen-lockfile` と `bun audit`（既知脆弱性 0 件）を確認した。
